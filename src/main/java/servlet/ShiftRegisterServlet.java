@@ -73,34 +73,27 @@ public class ShiftRegisterServlet extends HttpServlet {
 		System.out.println("requestBody:");
 		System.out.println(requestBody);
 		List<Map<String, Object>> dataList = objectMapper.readValue(requestBody, List.class);
-//		System.out.println("dataList:");
-//		System.out.println(dataList);
 		
 		for(Map<String, Object> data: dataList) {
 			System.out.println("data:");
 			System.out.println(data);
-			String start_time = (String) data.get("startTime");
-			System.out.println(start_time);
+			String start_time = (String) data.get("start_time");
 			Time start_time2 = Time.valueOf(start_time + ":00");
 			System.out.println(start_time2);
 			
-			String end_time = (String) data.get("endTime");
+			String end_time = (String) data.get("end_time");
 			Time end_time2 = Time.valueOf(end_time + ":00");
 			System.out.println(end_time2);
 			
-			String employeeCD = (String) data.get("employeeCD");
+			int employeeCD =  (int) data.get("employeeCD");
 			System.out.println(employeeCD);
-			int employeeCD2 = Integer.parseInt(employeeCD);
-			System.out.println(employeeCD2);
 			
-			String shift_day = (String) data.get("shift_day");
-			int shift_day2 = Integer.parseInt(shift_day);
-			
+			int shift_day = (int) data.get("shift_day");
 			System.out.println(shift_day);
 			
 			
 			
-			ShiftBean ShiftRequest = new ShiftBean(employeeCD2, shift_day2, start_time2, end_time2);
+			ShiftBean ShiftRequest = new ShiftBean(employeeCD, shift_day, start_time2, end_time2);
 			ShiftList.add(ShiftRequest);
 		}
 		System.out.println(ShiftList);
