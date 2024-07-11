@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.RegistrationClockDao;
+import utils.SendEmail;
 
 /**
  * Servlet implementation class ClockInServlet
@@ -38,6 +39,9 @@ public class ClockInServlet extends HttpServlet {
 		System.out.println(employeeCD);
 		RegistrationClockDao in = new RegistrationClockDao();
 		in.registrationClockIn(now, employeeCD2);
+		
+		SendEmail sendEmail = new SendEmail();
+		sendEmail.send();
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("clockIn",now);
