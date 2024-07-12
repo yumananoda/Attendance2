@@ -2,6 +2,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -47,6 +48,9 @@ public class LoginServlet extends HttpServlet {
 		if(user != null) {
 			System.out.print("ログイン成功");
 			session.setAttribute("employeeCD", String.valueOf(user.getEmployeeCD()));
+			LocalDateTime clockIn = employeeDao.getClockIn(user.getEmployeeCD());
+			session.setAttribute("clockIn",clockIn);
+			System.out.println(clockIn);
 			
 			request.getRequestDispatcher("/Clock.jsp").forward(request, response);
 		}else {
