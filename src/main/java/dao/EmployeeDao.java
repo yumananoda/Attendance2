@@ -6,7 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import models.EmployeeBean;
@@ -109,15 +109,15 @@ public class EmployeeDao extends CommonDao {
 		return employees;
 	}
 
-	public LocalDateTime getClockIn(int args_employeeCD) {
-		LocalDateTime clockInTime = null;
+	public Timestamp getClockIn(int args_employeeCD) {
+		Timestamp clockInTime = null;
 		String query = "SELECT clock_in_time FROM time_records WHERE employeeCD = ? AND clock_out_time IS NULL;";
 		try (Connection con = DriverManager.getConnection(URL, USER, PASS);
 				PreparedStatement statement = con.prepareStatement(query)) {
 			statement.setInt(1, args_employeeCD);
 			ResultSet rs = statement.executeQuery();
 			while (rs.next()) {
-				clockInTime = (LocalDateTime) rs.getObject("clock_in_time");
+				clockInTime = (Timestamp) rs.getObject("clock_in_time");
 				statement.close();
 				con.close();
 			}

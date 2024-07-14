@@ -2,7 +2,7 @@
 package servlet;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -46,9 +46,12 @@ public class LoginServlet extends HttpServlet {
 		
 		//画面遷移
 		if(user != null) {
-			System.out.print("ログイン成功");
-			session.setAttribute("employeeCD", String.valueOf(user.getEmployeeCD()));
-			LocalDateTime clockIn = employeeDao.getClockIn(user.getEmployeeCD());
+			System.out.println("ログイン成功");
+			session.setAttribute("employeeCD", user.getEmployeeCD());
+			System.out.println(employeeCD);
+			System.out.println(password);
+			Timestamp clockIn = employeeDao.getClockIn(user.getEmployeeCD());
+			System.out.println(clockIn);
 			session.setAttribute("clockIn",clockIn);
 			System.out.println(clockIn);
 			
