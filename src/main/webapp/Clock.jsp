@@ -3,17 +3,15 @@
 <%@ page import="java.time.LocalDateTime" %>
 <%
 String employeeCD = (String)session.getAttribute("employeeCD"); 
+System.out.println("employeeCD:" + employeeCD);
 LocalDateTime clockIn = (LocalDateTime)session.getAttribute("clockIn"); 
-System.out.print("clockIn:");
-System.out.println(clockIn);
+System.out.println("clockIn:" + clockIn);
 
 LocalDateTime breakIn = (LocalDateTime)session.getAttribute("breakIn"); 
-System.out.print("breakIn:");
-System.out.println(breakIn);
+System.out.println("breakIn:" + breakIn);
 
 LocalDateTime breakOut = (LocalDateTime)session.getAttribute("breakOut"); 
-System.out.print("breakOut:");
-System.out.println(breakOut);
+System.out.println("breakOut:" + breakOut);
 %>
 
 <!DOCTYPE html>

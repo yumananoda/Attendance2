@@ -2,7 +2,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.sql.Timestamp;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -47,13 +46,15 @@ public class LoginServlet extends HttpServlet {
 		//画面遷移
 		if(user != null) {
 			System.out.println("ログイン成功");
-			session.setAttribute("employeeCD", user.getEmployeeCD());
+			session.setAttribute("employeeCD", String.valueOf(user.getEmployeeCD()));
 			System.out.println(employeeCD);
-			System.out.println(password);
-			Timestamp clockIn = employeeDao.getClockIn(user.getEmployeeCD());
-			System.out.println(clockIn);
-			session.setAttribute("clockIn",clockIn);
-			System.out.println(clockIn);
+//			System.out.println(password);
+//			Timestamp clockIn = employeeDao.getClockIn(user.getEmployeeCD());
+//			System.out.println(clockIn);
+//			session.setAttribute("clockIn",clockIn);
+//			Timestamp clockIn2 = session.getAttribute(clockIn);
+//			System.out.println(clockIn2);
+//			System.out.println(clockIn);
 			
 			request.getRequestDispatcher("/Clock.jsp").forward(request, response);
 		}else {
