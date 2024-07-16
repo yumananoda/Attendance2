@@ -52,9 +52,11 @@ public class LoginServlet extends HttpServlet {
 			System.out.println(employeeCD);
 			System.out.println(password);
 			Timestamp clockIn = employeeDao.getClockIn(user.getEmployeeCD());
-			LocalDateTime localDateTime = clockIn.toLocalDateTime();
-			System.out.println(localDateTime);
-			session.setAttribute("clockIn",localDateTime);
+			if(clockIn != null) {
+				LocalDateTime localDateTime = clockIn.toLocalDateTime();
+				System.out.println(localDateTime);
+				session.setAttribute("clockIn",localDateTime);
+			}
 			
 			request.getRequestDispatcher("/Clock.jsp").forward(request, response);
 		}else {
